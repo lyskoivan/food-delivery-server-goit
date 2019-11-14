@@ -1,7 +1,11 @@
 const fs = require("fs");
 const path = require("path");
-
+/*
+если url + /:id = req ('pr/id')
+*/
 const userRoute = (req, res) => {
+  const prodUrl = req.url;
+  const test = prodUrl.slice(9);
   const productsPath = path.join(
     __dirname,
     "../../",
