@@ -11,17 +11,23 @@ const handleProductsRoute = (req, res) => {
   const queryStr = querystring.parse(reqUrl.query);
   const productId = req.url.slice(10);
 
-  if (req.url === `/products/${productId}`) {
-    return idProductRoute;
-  }
-
   if (queryStr.ids) {
-    return allIdProducts;
+    allIdProducts(req, res);
+    return;
   } else if (queryStr.category) {
-    return productsByCategory;
+    productsByCategory(req, res);
+    return;
+  } else if (req.url === `/products/${productId}`) {
+    idProductRoute(req, res);
+    return;
+  } else if (req.url === "/products") {
+    allProducts(req, res);
+    return;
   }
-
-  return allProducts;
+  res.writeHead(400, { "Content-type": "text/plain" });
+  res.write("Client Error");
+  res.end();
+  return;
 };
 
 module.exports = handleProductsRoute;
