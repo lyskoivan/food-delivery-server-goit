@@ -1,16 +1,6 @@
-const hasNumber = myString => /\d/.test(myString);
-
-const getIdFreeUrl = url => {
+const getQueryFreeUrl = url => {
   const lastIndex = url.lastIndexOf("/");
-  const idString = url.slice(lastIndex + 1).trim();
-
-  if (!hasNumber(idString)) {
-    return url;
-  }
-
-  const idNumber = +idString;
-
-  if (idNumber && lastIndex !== -1) {
+  if (lastIndex !== 0) {
     return url.slice(0, lastIndex);
   }
 
@@ -18,7 +8,7 @@ const getIdFreeUrl = url => {
 };
 
 const getRouteHandler = (routerConfig, url) => {
-  const clearUrl = getIdFreeUrl(url);
+  const clearUrl = getQueryFreeUrl(url);
 
   return routerConfig[clearUrl];
 };
