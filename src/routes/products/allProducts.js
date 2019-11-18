@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const userRoute = (req, res) => {
+const productRoute = (req, res) => {
   const productsPath = path.join(
     __dirname,
     "../../",
@@ -16,4 +16,4 @@ const userRoute = (req, res) => {
 
   readStream.pipe(res);
 };
-module.exports = userRoute;
+module.exports = productRoute;

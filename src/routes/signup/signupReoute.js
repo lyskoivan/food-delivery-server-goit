@@ -15,6 +15,11 @@ const saveUser = user => {
 };
 
 const signUpRoute = async (req, res) => {
+  if (req.method === "GET") {
+    res.writeHead(400, { "Content-type": "text/plain" });
+    res.write("Client Error");
+    res.end();
+  }
   if (req.method === "POST") {
     let body = "";
     await req.on("data", function(data) {
